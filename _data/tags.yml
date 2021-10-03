@@ -1,0 +1,13 @@
+jekyll :
+  name: jekyll
+  description: False
+  cover: assets/built/images/background-frontend.jpg
+python :
+  name: python
+  description: False
+  cover: assets/built/images/background-frontend.jpg
+economy :
+  name: economy
+  description: False
+  cover: assets/built/images/background-frontend.jpg
+# 글을 포스팅하는 범주를 올리면 된다.
