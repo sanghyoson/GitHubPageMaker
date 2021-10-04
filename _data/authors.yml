@@ -8,4 +8,5 @@ sanghyoson :              # 닉네임, 글을 쓰면 보이는 아이디
   picture: assets/built/images/author-logo.png   # author image
   facebook:             # facebook ID
   twitter:              # twitter ID
-  cover: False
+  cover : assets/built/images/background-frontend.jpg
+  #cover: False

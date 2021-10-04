@@ -3,7 +3,7 @@ ul.mylist li, ol.mylist li {
     padding: 5px 0px 5px 5px;
     margin-bottom: 5px;
     border-bottom: 1px solid #efefef;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 ul.mylist li:last-child,

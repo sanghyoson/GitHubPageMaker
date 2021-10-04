@@ -8,10 +8,13 @@ class: page-template
 subclass: 'post page'
 ---
 
+블로그를 준비하게 된 것은 < 2020 백엔드 개발자 로드맵 >이라는 이미지를 우연히 보게 된 후 부터이다.
+
+![2020 백엔드 로드맵](../assets/built/images/backend_roadmap.png){: width="80%" height="80%"}
+
+누군가 그러더라. 
+> 로드맵을 보고 
+
 소리 없는 아우성!
 
-> 언젠간 도망칠거야  [Ghost.org](https://ghost.org/) and start a free 14 day trial to give Ghost a try!
-
-If you're a developer: Ghost is a completely open source (MIT) Node.js application built on a JSON API with an Ember.js admin client. It works with MySQL and SQLite, and is publicly available [on Github](https://github.com/TryGhost/ghost).
-
-If you need help with using Ghost, you'll find a ton of useful articles on [our knowledgebase](https://help.ghost.org/), as well as extensive [developer documentation](https://docs.ghost.org/).
+> 언젠간 도망칠거야  [Ghost.org](https://ghost.org/)

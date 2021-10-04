@@ -110,7 +110,7 @@ feed:
 safe: False
 lsi: False
 
-username: moon9342
+username: sanghyoson
 repo: GitHubPageMaker
 # username : travis-ci와 연동하는 github의 username
 # repo: travis-ci와 연동하는 github의 repository이름
@@ -121,7 +121,8 @@ branch: master
 
 relative_source:
 
-destination: ../[GitHubPage]/
+#destination: ../[GitHubPage]/
+destination: ../sanghyoson.github.io/
 # compile된 결과가 생성되는 폴더
 # 이 폴더안의 내용이 우리가 운영하는 블로그 내용이 컴파일되서 들어간다.
 # 이 폴더안의 내용을 github repository(https://username.github.io)에 push
