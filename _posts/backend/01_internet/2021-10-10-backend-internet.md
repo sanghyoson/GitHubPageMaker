@@ -3,9 +3,9 @@ layout: post
 current: post
 cover:  assets/built/images/jekyll-logo.png
 navigation: True
-title: Backend 인터넷 - 인터넷은 어떻게 작동하는가?
+title: 인터넷(1) - 인터넷은 어떻게 작동하는가?
 date: 2021-10-10 16:40:00
-tags: [backend]
+tags: [backend, internet]
 class: post-template
 subclass: 'post tag-python'
 author: sanghyoson

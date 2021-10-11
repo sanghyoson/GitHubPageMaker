@@ -1,3 +1,4 @@
+## Main Tag
 jekyll :
   name: jekyll
   description: False
@@ -10,4 +11,9 @@ backend :
   name: backend
   description: False
   cover: assets/built/images/blog-cover1.png
+
+## Sub Tag :
+internet :
+  name: internet
+
 # 글을 포스팅하는 범주를 올리면 된다.
