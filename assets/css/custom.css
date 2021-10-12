@@ -87,7 +87,7 @@ ol.table-of-contents-list li:last-child {
 
 ul.table-of-contents-list li:before,
 ol.table-of-contents-list li:before {
-    content: '\f124';       /* https://fontawesome.com/v5.15/icons?d=gallery&p=2 해당 사이트에서 찾을수 있음 현재버전 4 버전으로 fas가 아닌 fa */
+    content: '\f124';       /* https://fontawesome.com/v5.15/icons?d=gallery&p=2 해당 사이트에서 찾을수 있음, 해당버전은 4버전이라 fa */
     display: inline-block;
     margin: 0 2px 0 4px;
     line-height: 1;
