@@ -1,19 +1,22 @@
 ## Main Tag
-jekyll :
-  name: jekyll
+roadmap :
+  name: roadmap
   description: False
   cover: assets/built/images/blog-cover1.png
-python :
-  name: python
-  description: False
-  cover: assets/built/images/blog-cover1.png
-backend :
-  name: backend
+
+database :
+  name: database
   description: False
   cover: assets/built/images/blog-cover1.png
 
 ## Sub Tag :
 internet :
   name: internet
+
+postresql :
+  name: postresql
+
+mongodb :
+  name: mongodb
 
 # 글을 포스팅하는 범주를 올리면 된다.

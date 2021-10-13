@@ -1,11 +1,11 @@
 ---
 layout: post
 current: post
-cover:  assets/built/images/jekyll-logo.png
+cover:  assets/built/images/internet.jpg
 navigation: True
 title: 인터넷(1) - 인터넷은 어떻게 작동하는가?
 date: 2021-10-10 16:40:00
-tags: [backend, internet]
+tags: [roadmap, internet]
 class: post-template
 subclass: 'post tag-python'
 author: sanghyoson
@@ -50,3 +50,7 @@ author: sanghyoson
 모뎀을 통해서 인터넷 서비스 제공 업체(Internet Service Provider, **ISP**)에 접근할 수 있고, ISP가 구축한 네트워크를 통해 접근하려는 대상 네트워크로 접근이 가능하게 된다.
 이러한 전체적인 네트워크 인프라로 인터넷은 구성된다.
 ![인터넷 통신 네트워크](../assets/built/images/internet_network_6_internet.jpg){: width="200 %" height="200%"}
+
+<br/>
+<h2>참고 사이트</h2>
+&nbsp;&nbsp;&nbsp;<i class="fa fa-search">&nbsp;</i> [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
