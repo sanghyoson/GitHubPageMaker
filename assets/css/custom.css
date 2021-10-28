@@ -36,8 +36,32 @@ ol.mylist li:hover {
     font-size: 2rem;
     font-weight: normal;
     font-style: normal;
+
 }
 
+/* 내가 추가한 CSS 데이터 형태 */
+ul.data-contents, ol.data-contents {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    max-width: 250px;
+    width: 100%;
+    font-family: Georgia, 'Nanum Gothic', serif !important;
+}
+
+ul.data-contents li:before,
+ol.data-contents li:before {
+    content: '\f00c';       /* https://fontawesome.com/v5.15/icons?d=gallery&p=2 해당 사이트에서 찾을수 있음, 해당버전은 4버전이라 fa */
+    display: inline-block;
+    margin: 0 2px 0 4px;
+    line-height: 1;
+    font-family: "FontAwesome";
+    font-size: 2rem;
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: middle;
+    padding: 5px 5px 6px 0px;
+}
 
 /* 강좌 table of contents(목차)를 위한 custom css*/
 span.table-of-contents-list {
