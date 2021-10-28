@@ -13,6 +13,7 @@ author: sanghyoson
 {% include backend-internet-table-of-contents.html %}
 <br/>
 ![인터넷 사진](../assets/built/images/internet.jpg){: width="100%" height="100%"}
+
 **인터넷**(Internet)이란 International Network의 줄임말로 Web의 가장 핵심적인 기술이라고 할 수 있다.
 기본적으로, 인터넷이란 무수히 많은 컴퓨터들이 통신할 수 있도록 하는 **거대한 네트워크 통신망**이다.
 수많은 컴퓨터들이 통신하기 위해서 컴퓨터 **TCP/IP**를 이용하는데 이 장에서는 인터넷이 기본적으로 어떻게 작동하는지만 다룬다.
