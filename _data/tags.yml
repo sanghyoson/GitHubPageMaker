@@ -9,6 +9,12 @@ database :
   description: False
   cover: assets/built/images/blog-cover1.png
 
+algorithm :
+  name: algorithm
+  description: False
+  cover: assets/built/images/blog-cover1.png
+  
+
 ## Sub Tag :
 internet :
   name: internet
@@ -17,6 +23,9 @@ postresql :
   name: postresql
 
 mongodb :
+  name: mongodb
+
+programmers :
   name: mongodb
 
 # 글을 포스팅하는 범주를 올리면 된다.

@@ -53,4 +53,5 @@ author: sanghyoson
 
 <br/>
 <h2>참고 사이트</h2>
-&nbsp;&nbsp;&nbsp;<i class="fa fa-search">&nbsp;</i> [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
+&nbsp;&nbsp;&nbsp;<i class="fa fa-search">&nbsp;</i> 
+<a href = 'https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work'> MDN Web Docs </a>

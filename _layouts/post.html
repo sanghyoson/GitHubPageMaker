@@ -123,8 +123,7 @@ into the {body} of the default.hbs template -->
 <aside class="read-next outer">
     <div class="inner">
         <div class="read-next-feed">
-            {% if page.tags.size > 0 %}
-                {% assign primary = page.tags | first %}
+            {% if page.tags.size > 0 %} 
                 {% assign related_posts = 0 %}
                 {% for post in site.posts %}
                   {% if post.tags.size > 0 %}
