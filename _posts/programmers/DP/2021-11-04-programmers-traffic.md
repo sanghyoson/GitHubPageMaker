@@ -3,9 +3,9 @@ layout: post
 current: post
 cover:  assets/built/images/programmers_logo.jpg
 navigation: True
-title: 추석 트래픽 - 알고리즘
+title: 프로그래머스 - 추석 트래픽(DP)
 date: 2021-11-04 12:40:00
-tags: [algorithm, programmers]
+tags: [programmers, dp]
 class: post-template
 subclass: 'post tag-python'
 author: sanghyoson
