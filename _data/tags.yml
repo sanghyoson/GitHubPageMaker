@@ -44,11 +44,14 @@ stack :
 heap :
   name: heap
 
-binary_search :
-  name: binary_search
+binary search :
+  name: binary search
 
 Trie :
   name: Trie
+
+dfs bfs :
+  name: dfs bfs
 
 
 # 글을 포스팅하는 범주를 올리면 된다.
