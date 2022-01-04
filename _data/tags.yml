@@ -53,5 +53,8 @@ Trie :
 dfs bfs :
   name: dfs bfs
 
+greedy :
+  name: greedy
+
 
 # 글을 포스팅하는 범주를 올리면 된다.
