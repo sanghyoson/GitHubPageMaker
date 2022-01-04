@@ -3,31 +3,31 @@ layout: post
 current: post
 cover:  assets/built/images/programmers_logo.jpg
 navigation: True
-title: 프로그래머스 - 가장 먼 노드(BFS, DFS)
-date: 2021-12-17 12:40:00
-tags: [programmers, dfs bfs]
+title: 프로그래머스 - 큰 수 만들기(Greedy)
+date: 2021-12-18 12:40:00
+tags: [programmers, greedy]
 class: post-template
 subclass: 'post tag-python'
 author: sanghyoson
 ---
 <i class="fa fa-search">&nbsp;</i> 
-<a href='https://programmers.co.kr/learn/courses/30/lessons/49189'> BFS, DFS - 가장 먼 노드</a>
+<a href='https://programmers.co.kr/learn/courses/30/lessons/42883?language=javascript'> Greedy - 큰 수 만들기</a>
 ![프로그래머스 사진](../assets/built/images/programmers_logo.jpg){: width="100%" height="100%"}
 
 <h2>문제 설명</h2>
 <br/>
-n개의 노드가 있는 그래프가 있습니다. 각 노드는 1부터 n까지 번호가 적혀있습니다. 1번 노드에서 가장 멀리 떨어진 노드의 갯수를 구하려고 합니다. 가장 멀리 떨어진 노드란 최단경로로 이동했을 때 간선의 개수가 가장 많은 노드들을 의미합니다.
+어떤 숫자에서 k개의 수를 제거했을 때 얻을 수 있는 가장 큰 숫자를 구하려 합니다.
 
-노드의 개수 n, 간선에 대한 정보가 담긴 2차원 배열 vertex가 매개변수로 주어질 때, 1번 노드로부터 가장 멀리 떨어진 노드가 몇 개인지를 return 하도록 solution 함수를 작성해주세요.
+예를 들어, 숫자 1924에서 수 두 개를 제거하면 [19, 12, 14, 92, 94, 24] 를 만들 수 있습니다. 이 중 가장 큰 숫자는 94 입니다.
 
+문자열 형식으로 숫자 number와 제거할 수의 개수 k가 solution 함수의 매개변수로 주어집니다. number에서 k 개의 수를 제거했을 때 만들 수 있는 수 중 가장 큰 숫자를 문자열 형태로 return 하도록 solution 함수를 완성하세요.
 <br/>
 
 <h2>입력 형식</h2>
 <ul class = 'data-contents'>
 <br/>
-<li>노드의 개수 n은 2 이상 20,000 이하입니다.</li>
-<li>간선은 양방향이며 총 1개 이상 50,000개 이하의 간선이 있습니다.</li>
-<li>vertex 배열 각 행 [a, b]는 a번 노드와 b번 노드 사이에 간선이 있다는 의미입니다.</li>
+<li>number는 1자리 이상, 1,000,000자리 이하인 숫자입니다.</li>
+<li>k는 1 이상 number의 자릿수 미만인 자연수입니다.</li>
 </ul>
 <br/>
 
@@ -40,14 +40,15 @@ n개의 노드가 있는 그래프가 있습니다. 각 노드는 1부터 n까�
 
 <h2>문제 풀이</h2>
 <br/>
-처음 시작하는 노드인 '1'에서부터 시작하여, 모든 노드를 탐색하여, 각 노드까지의 거리를 결정하여야 한다. 따라서 모든 탐색을 위한 BFS나 DFS가 필요하다고 판단했다. 다만, 가장 깊은 노드들의 집합을 알아 내는 것이 목표이므로 같은 깊이를 탐색하는 BFS가 DFS보다는 적합하다. 
+문제에서 주어진 k개를 삭제하여, 큰 수를 만드는 문제이다. 탐욕법(Greedy)을 이용하여 접근하면 쉽게 접근이 가능하다. 핵심은, 수의 맨 앞에서부터 작은 수를 차례로 제거하면 된다.  
 
 <ol class = 'data-contents'>
-    <li>1. 배열로 주어진 데이터를 이용하여 그래프로 표현한다.</li>
-    <li>2. BFS를 이용하여 탐색을 시작하고, 탐색을 통해 거쳐가는 노드들의 깊이를 담은 배열을 구한다.</li>
-    <li>3. 탐색이 종료되면, 가장 거리가 먼 노드의 개수를 구한다.</li>
+    <li>1. number의 맨 앞의 자리의 수를 임시로 데이터를 저장하는 stack에 저장한다.</li>
+    <li>2. stack 데이터와 number의 다음 자리수를 비교하는데, stack 내의 데이터가 작으면 이를 제거하고 카운트를 증가시키고 그렇지 않으면 stack에 그 number의 그 다음자리를 저장한다.</li>
+    <li>3. 위를 반복하여, 카운터가 k와 같으면 알고리즘을 종료하고 stack과 남은 number를 이어붙여 return한다.</li>
 </ol>
 <br/>
+    JS에서는 제공하지 않는 큐를 사용하였는데, deque를 사용하는 것이 번거로워 reverse()한 후, pop()을 사용하였다.
 
 <!-- <h4>풀이과정 - 문자열로부터 시작, 종료 시간 파싱하기</h4>
 <br/>
@@ -63,32 +64,30 @@ n개의 노드가 있는 그래프가 있습니다. 각 노드는 1부터 n까�
 
 <h2>최종 코드</h2>
 ~~~javascript
-function solution(n, edge) {
-    const graph = Array.from(
-        Array(n+1),
-        () => []
-    );
-    
-    for (const [st, en] of edge){
-        graph[st].push(en);
-        graph[en].push(st);
-    }           
-    
-    
-    const distance = Array(n+1).fill(0);
-    distance[1] = 1;
-    
-    const q = [1];
-    while (q.length > 0){
-        const st = q.shift();
-        for (const en of graph[st]){
-            if (distance[en] === 0){
-                q.push(en);
-                distance[en] = distance[st] + 1;
-            }
+function solution(number, k) {
+    let cnt = 0;
+    let arr = number.split('');
+    arr.reverse();
+    let stack = [];
+    while (cnt < k){
+        if (stack.length == 0){
+            stack.push(arr.pop());
+        }
+        
+        if (arr.length == 0){
+            stack.pop();
+            cnt += 1;
+        }
+
+        if (stack[stack.length-1] < arr[arr.length-1]){
+            stack.pop();
+            cnt += 1;
+        } else {
+            stack.push(arr.pop());
         }
     }
-    const max = Math.max(...distance);
-    return distance.filter(x => x === max).length;
+    
+    arr.reverse();
+    return [...stack, ...arr].join('');
 }
 ~~~
