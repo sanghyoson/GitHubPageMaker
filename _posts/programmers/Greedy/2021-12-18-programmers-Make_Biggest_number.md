@@ -91,3 +91,31 @@ function solution(number, k) {
     return [...stack, ...arr].join('');
 }
 ~~~
+
+
+<br/>
+
+
+<h2>다른 코드</h2>
+~~~javascript
+function solution(number, k) {
+    const stack = [];
+    let cnt = 0;
+    
+    for (const item of number){
+        while (cnt < k && stack[stack.length-1] < item){
+            stack.pop();
+            cnt += 1;
+        }
+        stack.push(item);
+    }
+    
+    // cnt가 쌓이지 않는 경우를 대비
+    while (cnt < k){
+        stack.pop();
+        cnt += 1;
+    }
+    
+    return stack.join('');
+}
+~~~
