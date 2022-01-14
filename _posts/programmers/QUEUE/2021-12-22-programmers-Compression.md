@@ -60,6 +60,8 @@ LZW 압축은 다음 과정을 거친다.
 <h2>문제 풀이</h2>
 <br/>
 큐 스택을 이용하여 간단하게 해결할 수 있을 것이라 판단했으나, 인덱스가 하나씩 밀리는 상황이 발생하였다... 통과는 하였으나, 코드가 매우 지저분함 ㅠㅠ
+
+무분별하게... 스택, 큐를 사용해서 그런 것 같음. 스택 큐를 사용할 때 데이터의 형태 손실(?)되기 떄문에 데이터를 처리하기 힘든경우가 발생한다 ..
 <!-- <ol class = 'data-contents'>
     <li>1. 비트 연산과 진법연산을 통해서 이진법 계산</li>
     <li>2. 2진법 연산시 동일한 자리수를 갖도록 하기위해서 나머지 자리를 0으로 저장</li>
@@ -144,3 +146,36 @@ class Queue{
     }
 }
 ~~~
+
+<br/>
+<h2>최종 코드</h2>
+~~~javascript
+function solution(msg) {
+    var answer = [];
+    const dictionary = {};
+    let al = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((v,i)=> dictionary[v]=i+1);
+
+    let nextIndex = 27;
+
+    for (let i = 0; i < msg.length; i += 1) {
+        let str = msg[i];
+        let index = dictionary[str];
+
+        for (let j = i + 1; j < msg.length; j += 1) {
+            str += msg[j];
+            if (dictionary[str]) {
+                index = dictionary[str];
+                i++;
+            } else {
+                dictionary[str] = nextIndex++;
+                break;
+            }
+        }
+
+        answer.push(index);
+    }
+
+    return answer;
+}
+~~~
+
