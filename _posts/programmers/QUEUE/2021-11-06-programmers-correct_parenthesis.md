@@ -66,3 +66,18 @@ def solution(s):
                 stack.append(pop)
     return True if len(stack)==0 else False
 ~~~
+<br/>
+
+<h2>최종 코드2</h2>
+~~~javascript
+function solution(s){
+    let stack = [];
+    
+    for (const c of s){
+        if (c === ')' && stack[stack.length - 1] == '(') stack.pop();
+        else stack.push(c);
+    }
+    
+    return stack.length == 0? true : false;
+}
+~~~
