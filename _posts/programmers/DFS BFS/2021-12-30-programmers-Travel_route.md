@@ -65,5 +65,23 @@ author: sanghyoson
 
 <h2>최종 코드</h2>
 ~~~javascript
-
+function solution(tickets){
+       let routes = [];  
+                       
+       function dfs (extraTickets, currentLocation,route ) {
+            if(extraTickets.length===0){
+           		routes.push(route);
+            }
+            else{
+                extraTickets.forEach(([departure, destination], index) => {
+                   if( currentLocation === departure){
+                        const newTickets = extraTickets.filter((v,i)=> i !== index);
+                        dfs(newTickets, destination, [...route, destination])
+                    }
+                });
+            }
+        }
+        dfs(tickets , "ICN" , ["ICN"])
+        return  routes.sort()[0];
+    }
 ~~~
