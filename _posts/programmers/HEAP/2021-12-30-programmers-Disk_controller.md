@@ -52,6 +52,8 @@ author: sanghyoson
 <br/>
 어떻게 접근해야할지는 알겠으나,,, 구현을 하는 방법을 모르겠다 ... 뭐가 하나씩 부족하다 ㅠ.... 답답해 죽겠네 ..
 최소 힙으로 접근해서 데이터를 처리할 수 있을 때, 최소힙으로부터 데이터를 뽑으면 된다... 그런데 안되네 ㅡㅡ
+
+일단 JS에서 힙과 같은 데이터 구조를 제공하지 않는다 -> 구현을 해야하는데, 이것보다 더 간단하게 우선순위큐를 이용하여 해결 할 수 있다. 고정관념에서 벗어나야할듯 ...
 <!-- <ol class = 'data-contents'>
     <li>1. 가장 큰 수를 제거</li>
     <li>2. 시간 포인트(시작, 종료시간)에서 오버랩되는 데이터의 수 카운트하기</li>
@@ -71,97 +73,101 @@ author: sanghyoson
 
 <h2>최종 코드</h2>
 ~~~javascript
-class MinHeap {
-    constructor() {
-        this.heap = [ null ];
-    }
-    
-    size() {
-        return this.heap.length - 1;
-    }
-    
-    swap(a, b) {
-        [ this.heap[a], this.heap[b] ] = [ this.heap[b], this.heap[a] ];
-    }
-    
-    heappush(value) {
-        this.heap.push(value);
-        let curIdx = this.heap.length - 1;
-        let parIdx = Math.floor(curIdx / 2);
-        
-        while(curIdx !== 0 && this.heap[parIdx] > this.heap[curIdx]) {
-            this.swap(parIdx, curIdx)
-            curIdx = parIdx;
-            parIdx = Math.floor(curIdx / 2);
-        }
-    }
-    
-    heappop() {
-        const min = this.heap[1];	
-        if(this.heap.length <= 2) this.heap = [ null ];
-        else this.heap[1] = this.heap.pop();   
-        
-        let curIdx = 1;
-        let leftIdx = curIdx * 2;
-        let rightIdx = curIdx * 2 + 1; 
-
-        while(
-            this.heap[leftIdx] < this.heap[curIdx] ||
-            this.heap[rightIdx] < this.heap[curIdx]
-        ) {
-            const minIdx = this.heap[leftIdx] > this.heap[rightIdx] ? rightIdx : leftIdx;
-            this.swap(minIdx, curIdx);
-            curIdx = minIdx;
-            leftIdx = curIdx * 2;
-            rightIdx = curIdx * 2 + 1;
-        }
-
-        return min;
-    }
-}
-
-
 function solution(jobs) {
 
-  const heap = new MinHeap();
-  
-  const length = jobs.length;
-  let answer = 0;
-  let time = 0;
+    const heap = new MinHeap();
 
-  jobs = jobs
-    .sort((a, b) => a[0] - b[0])
-    .map((v, i, arr) => [v[0] - arr[0][0], v[1]]);
+    const length = jobs.length;
+    let answer = 0;
+    let time = 0;
 
-  // 남은 작업이 있을 동안
-  while (jobs.length || heap.size) {
-    
-    // 디스크의 현재 시간과 동일하거나 미리 요청된 작업이 존재한다면 heap에 추가한다. 
-    // heap에 추가할 때마다 bubbleUp 방식으로 heapify를 실행한다.
-    while (jobs.length && jobs[0][0] <= time) {
-      heap.heappush(jobs.shift());
-    }
+    jobs = jobs
+        .sort((a, b) => a[0] - b[0]);
+        // .map((v, i, arr) => [v[0] - arr[0][0], v[1]]);
 
-    // 만약에 디스크의 현재 시간과 동일하거나 미리 요청된 작업이 없다면, 
-    // 디스크의 현재 시간 이후에 요청된 작업이 존재하는지 확인해 heap에 추가한다.
-    if (!heap.size) {
-      const newTime = jobs[0][0];
-      while (jobs.length && jobs[0][0] === newTime) {
-        heap.heappush(jobs.shift());
-      }
-      
-      // 디스크의 현재 시간을 새롭게 추가된 작업의 요청시간으로 갱신한다.
-      time = newTime;
-    }
+    while (jobs.length > 0 || heap.size() > 0) {
+        
+        while (jobs.length > 0 && jobs[0][0] <= time) {
+            let pop = jobs.shift()
+            heap.heappush([pop[1], pop[0]]);
+        }
 
-    // 작업 대기열에서 가장 소요 시간이 짧은 작업을 꺼낸다. heap에서 꺼낼 때마다 bubbleDown 방식으로 heapify를 실행한다.
-    const done = heap.heappop();
-    
-    // 현재 꺼낸 작업의 종료 시간을 더해 디스크의 현재 시간을 갱신한다.
-    time += done[1];
-    answer += time - done[0];
+        if (heap.size == 0) {
+            const newTime = jobs[0][0];
+            while (jobs.length > 0 && jobs[0][0] === newTime) {
+                let pop = jobs.shift()
+                heap.heappush([pop[1], pop[0]]);
+            }
+
+            time = newTime;
+        }
+
+        const done = heap.heappop();
+
+        time += done[0];
+        answer += time - done[1];
   }
 
   return Math.floor(answer / length);
+}
+~~~
+<br/>
+<br/>
+
+<h2>참고 코드</h2>
+~~~javascript
+function solution(jobs) {
+    var answer = 0;    
+    
+    // 우선 전체 작업 리스트를 요청시간의 오름차순으로 정렬한다.
+    jobs.sort(function(a, b){
+        return a[0] - b[0];
+    });
+    
+    var now = 0;    // 작업이 완료된 현재 시간
+    var total = 0;  // 대기 큐에서 우선순위가 낮은 첫번째 작업의 전체 작업시간
+    var index = 0;  // 전체 작업 리스트 인덱스
+    
+    // 작업이 진행 중일 때 대기 큐    
+    var priorityQueue = [];
+    
+    // 전체 작업 리스트를 모두 돌거나, 대기 큐 리스트가 있을 때 까지
+    while( index < jobs.length || priorityQueue.length > 0 ){
+        
+        // 현재시간이 n번째 요청시간보다 크거나 같으면 대기 큐에 넣어준다.
+        if( index < jobs.length && now >= jobs[index][0] ){
+            
+            // 대기 큐에 넣고 다음 작업으로 넘어간다.
+            priorityQueue.push(jobs[index]);
+            index = index + 1;
+          
+            // 대기 큐는 요청시간 순이 아닌 작업시간 오름차순으로 정렬한다.
+            priorityQueue.sort(function(a, b){
+                return a[1] - b[1];
+            });
+            
+            continue;
+        }
+        
+        if( !priorityQueue.length ){
+            // 대기 큐가 없으면 현재시간을 첫번째 작업의 요청시간으로 세팅한다.
+            now = jobs[index][0];
+        }else{
+            // 대기 큐가 있으면 첫번째 우선순위 작업의 전체시간을 계산한다.
+            var data = priorityQueue.shift();            
+            
+            // 우선 대기큐가 끝났을 때의 현재시간을 계산 (ex: 3 - 9 - 18)
+            now = now + data[1];
+            
+            // 현재 작업의 전체 소요시간 : 현재시간 - 요청시간 (ex : 3 - 7 - 17 )
+            total = now - data[0];
+            
+            // 전체 요청시간을 누적
+            answer = answer + total;
+        }
+    }
+    // 누적된 전체 요청시간의 평균
+    answer = parseInt(answer / jobs.length);
+    return answer;
 }
 ~~~
