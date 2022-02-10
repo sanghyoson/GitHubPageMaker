@@ -85,3 +85,30 @@ function solution(tickets){
         return  routes.sort()[0];
     }
 ~~~
+<br/>
+
+
+<h2>최종 코드2 -- 중복되는 티켓이 있을 경우 통과 안돼 ... </h2>
+~~~python
+def solution(tickets):
+    paths = []
+    def dfs(tickets, visited, cur, path):      # 리스트는 콜 바이 레프 인데... 다 찾아낼까 ..?
+        if len(path) == len(tickets) + 1:
+            if path not in paths:
+                paths.append(path)
+            return
+
+        for ticket in tickets:
+            if ticket not in visited:
+                depature, arrival = ticket
+                if depature == cur:
+                    newVisted = visited[:]
+                    newVisted.append(ticket)
+                    newPath = path[:]
+                    newPath.append(arrival)
+                    dfs(tickets, newVisted, arrival, newPath)
+    
+    dfs(tickets, [], 'ICN', ['ICN'])
+    paths.sort()
+    return paths[0]
+~~~
