@@ -86,3 +86,29 @@ function solution(n, times) {
     return left;
 }
 ~~~
+<br/>
+
+~~~python
+def solution(n, times):
+    answer = 0
+    left = 1
+    right = max(times) * n
+    
+    while left <= right:
+        mid = (left + right) // 2
+        person_cnt = 0
+        
+        for time in times:
+            person_cnt += mid // time
+            if person_cnt >= n:
+                break
+        
+        if person_cnt >= n:
+            right = mid - 1
+            answer = mid
+        else:
+            left = mid + 1
+    
+    return answer
+~~~
+
