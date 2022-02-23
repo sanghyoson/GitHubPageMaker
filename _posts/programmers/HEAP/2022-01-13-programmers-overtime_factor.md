@@ -11,7 +11,7 @@ subclass: 'post tag-python'
 author: sanghyoson
 ---
 <i class="fa fa-search">&nbsp;</i> 
-<a href='https://programmers.co.kr/learn/courses/30/lessons/42628'> Heap - 야근 지수</a>
+<a href='https://programmers.co.kr/learn/courses/30/lessons/12927'> Heap - 야근 지수</a>
 ![프로그래머스 사진](../assets/built/images/programmers_logo.jpg){: width="100%" height="100%"}
 
 <h2>문제 설명</h2>
